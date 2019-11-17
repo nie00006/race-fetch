@@ -7,16 +7,16 @@ Promise.race([datafile1, datafile2])
 .then( file => {
     return file.json();
 })
-.then( data => {
-    const currentType = data[0].type
+.then( res => {
+    const currentType = res.type
     console.log(currentType)
     if (currentType == "The Big Lebowski"){
-        document.querySelector("body").className="a"
-        document.querySelector(".code").textContent = data[0]._id
-        document.querySelector(".type").textContent = data[0].type
-        document.querySelector(".createdOn").textContent = data[0]._createdOn
 
-        data[0].data.forEach(item => {
+        document.querySelector("body").className="a"
+        
+        document.querySelector(".type").textContent = res.type
+        
+        res.data.forEach(item => {
             let id = document.createElement("p")
             let char = document.createElement("p")
             let actor = document.createElement("p")
@@ -33,15 +33,13 @@ Promise.race([datafile1, datafile2])
 
         });
 
-
-
     } else {
+        
         document.querySelector("body").className="b"
-        document.querySelector(".code").textContent = data[0]._id
-        document.querySelector(".type").textContent = data[0].type
-        document.querySelector(".createdOn").textContent = data[0]._createdOn
+        
+        document.querySelector(".type").textContent = res.type
 
-        data[0].data.forEach(item => {
+        res.data.forEach(item => {
             let id = document.createElement("p")
             let fName = document.createElement("p")
             let lName = document.createElement("p")
